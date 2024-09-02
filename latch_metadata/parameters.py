@@ -276,6 +276,7 @@ flow = [
     ),
 ]
 
+
 generated_parameters = {
     "input_source": NextflowParameter(),
     "run_name": NextflowParameter(
@@ -922,7 +923,6 @@ generated_parameters = {
         type=typing.Optional[bool],
         display_name="Skip FastQC",
         default=None,
-        section_title="Skipping specific steps",
         description="Skip FastQC",
     ),
     "skip_cutadapt": NextflowParameter(
@@ -1027,7 +1027,6 @@ generated_parameters = {
         type=typing.Optional[int],
         display_name="Random Seed",
         default=100,
-        section_title="Generic options",
         description="Specifies the random seed.",
     ),
     "multiqc_methods_description": NextflowParameter(
@@ -1041,7 +1040,6 @@ generated_parameters = {
         type=typing.Optional[int],
         display_name="Max CPUs",
         default=16,
-        section_title="Max job request options",
         description="Maximum number of CPUs that can be requested for any single job.",
     ),
     "max_memory": NextflowParameter(
