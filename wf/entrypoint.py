@@ -26,6 +26,8 @@ meta = Path("latch_metadata") / "__init__.py"
 import_module_by_path(meta)
 import latch_metadata
 
+sys.stdout.reconfigure(line_buffering=True)
+
 
 @dataclass(frozen=True)
 class SampleSheet:
@@ -49,6 +51,7 @@ def initialize() -> str:
         headers=headers,
         json={
             "storage_expiration_hours": 0,
+            "version": 2,
         },
     )
     resp.raise_for_status()
@@ -61,7 +64,19 @@ def initialize() -> str:
 def nextflow_runtime(
     input_source: str,
     pvc_name: str,
-    run_name: str,
+    run_name: typing.Annotated[
+        str,
+        FlyteAnnotation(
+            {
+                "rules": [
+                    {
+                        "regex": r"^[a-zA-Z0-9_-]+$",
+                        "message": "ID name must contain only letters, digits, underscores, and dashes. No spaces are allowed.",
+                    }
+                ],
+            }
+        ),
+    ],
     input: typing.List[SampleSheet],
     input_fasta: typing.Optional[LatchFile],
     input_folder: typing.Optional[LatchDir],
@@ -394,7 +409,19 @@ def nextflow_runtime(
 @workflow(metadata._nextflow_metadata)
 def nf_nf_core_ampliseq(
     input_source: str,
-    run_name: str,
+    run_name: typing.Annotated[
+        str,
+        FlyteAnnotation(
+            {
+                "rules": [
+                    {
+                        "regex": r"^[a-zA-Z0-9_-]+$",
+                        "message": "ID name must contain only letters, digits, underscores, and dashes. No spaces are allowed.",
+                    }
+                ],
+            }
+        ),
+    ],
     input: typing.List[SampleSheet],
     input_fasta: typing.Optional[LatchFile],
     input_folder: typing.Optional[LatchDir],
