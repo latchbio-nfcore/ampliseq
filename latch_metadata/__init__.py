@@ -21,6 +21,5 @@ NextflowMetadata(
         storage_gib=100,
     ),
     flow=flow,
-    about_page_path=Path("docs/latch.md"),
-    log_dir=LatchDir("latch:///nfcore_ampliseq_logs"),
+    log_dir=LatchDir("latch:///your_log_dir"),
 )
