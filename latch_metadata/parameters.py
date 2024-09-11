@@ -100,6 +100,39 @@ flow = [
         ),
     ),
     Section(
+        "Taxonomic Classification",
+        Params(
+            "dada_ref_taxonomy",
+            "qiime_ref_taxonomy",
+            "kraken2_ref_taxonomy",
+            "sintax_ref_taxonomy",
+        ),
+        Spoiler(
+            "Advanced Arguments",
+            Params(
+                "dada_ref_tax_custom",
+                "dada_ref_tax_custom_sp",
+                "dada_assign_taxlevels",
+                "cut_dada_ref_taxonomy",
+                "dada_addspecies_allowmultiple",
+                "dada_taxonomy_rc",
+                "pplace_tree",
+                "pplace_aln",
+                "pplace_model",
+                "pplace_alnmethod",
+                "pplace_taxonomy",
+                "qiime_ref_tax_custom",
+                "classifier",
+                "kraken2_ref_tax_custom",
+                "kraken2_assign_taxlevels",
+                "kraken2_confidence",
+                "addsh",
+                "cut_its",
+                "its_partial",
+            ),
+        ),
+    ),
+    Section(
         "Output Directory",
         Params("run_name"),
         Text("Parent directory for outputs"),
@@ -107,7 +140,7 @@ flow = [
     ),
     Spoiler(
         "Advanced Options",
-        Section(
+        Spoiler(
             "Sequencing Input Options",
             Params(
                 "illumina_novaseq",
@@ -119,7 +152,7 @@ flow = [
                 "ignore_empty_input_files",
             ),
         ),
-        Section(
+        Spoiler(
             "Read Trimming and Quality Filtering",
             Params(
                 "trunclenf",
@@ -132,7 +165,7 @@ flow = [
                 "ignore_failed_filtering",
             ),
         ),
-        Section(
+        Spoiler(
             "Amplicon Sequence Variants (ASV) Calculation and Post-processing",
             Params(
                 "sample_inference",
@@ -148,35 +181,7 @@ flow = [
                 "stop_codons",
             ),
         ),
-        Section(
-            "Taxonomic Classification",
-            Params(
-                "dada_ref_taxonomy",
-                "dada_ref_tax_custom",
-                "dada_ref_tax_custom_sp",
-                "dada_assign_taxlevels",
-                "cut_dada_ref_taxonomy",
-                "dada_addspecies_allowmultiple",
-                "dada_taxonomy_rc",
-                "pplace_tree",
-                "pplace_aln",
-                "pplace_model",
-                "pplace_alnmethod",
-                "pplace_taxonomy",
-                "qiime_ref_taxonomy",
-                "qiime_ref_tax_custom",
-                "classifier",
-                "kraken2_ref_taxonomy",
-                "kraken2_ref_tax_custom",
-                "kraken2_assign_taxlevels",
-                "kraken2_confidence",
-                "sintax_ref_taxonomy",
-                "addsh",
-                "cut_its",
-                "its_partial",
-            ),
-        ),
-        Section(
+        Spoiler(
             "Multi-region Analysis",
             Params(
                 "multiregion",
@@ -185,7 +190,7 @@ flow = [
                 "sidle_ref_tree_custom",
             ),
         ),
-        Section(
+        Spoiler(
             "ASV Filtering",
             Params(
                 "exclude_taxa",
@@ -193,7 +198,7 @@ flow = [
                 "min_samples",
             ),
         ),
-        Section(
+        Spoiler(
             "Downstream Analysis",
             Params(
                 "metadata_category",
@@ -206,7 +211,7 @@ flow = [
                 "tax_agglom_max",
             ),
         ),
-        Section(
+        Spoiler(
             "Differential Abundance Analysis",
             Params(
                 "ancom_sample_min_count",
@@ -218,7 +223,7 @@ flow = [
                 "ancombc_significance",
             ),
         ),
-        Section(
+        Spoiler(
             "Step Skipping",
             Params(
                 "skip_fastqc",
@@ -238,13 +243,13 @@ flow = [
                 "skip_report",
             ),
         ),
-        Section(
+        Spoiler(
             "Saving Steps",
             Params(
                 "save_intermediates",
             ),
         ),
-        Section(
+        Spoiler(
             "Other Options",
             Params(
                 "email",
@@ -252,7 +257,7 @@ flow = [
                 "multiqc_methods_description",
             ),
         ),
-        Section(
+        Spoiler(
             "Resource Limits",
             Params(
                 "max_cpus",
@@ -260,7 +265,7 @@ flow = [
                 "max_time",
             ),
         ),
-        Section(
+        Spoiler(
             "Report Customization",
             Params(
                 "report_template",
@@ -336,7 +341,7 @@ generated_parameters = {
         default=None,
         section_title=None,
         results_paths=[Path("/"), Path("/pipeline_info/execution_report.html")],
-        description="The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+        description="The output directory where the results will be saved.",
     ),
     "save_intermediates": NextflowParameter(
         type=bool,
