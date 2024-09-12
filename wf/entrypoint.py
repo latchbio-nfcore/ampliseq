@@ -36,7 +36,9 @@ class SampleSheet:
 
 
 @custom_task(cpu=0.25, memory=0.5, storage_gib=1)
-def initialize() -> str:
+def initialize(run_name: str) -> str:
+    rename_current_execution(str(run_name))
+
     token = os.environ.get("FLYTE_INTERNAL_EXECUTION_ID")
     if token is None:
         raise RuntimeError("failed to get execution token")
@@ -45,7 +47,6 @@ def initialize() -> str:
 
     print("Provisioning shared storage volume... ", end="")
     resp = requests.post(
-        # "http://nf-dispatcher-service.flyte.svc.cluster.local/provision-storage-ofs",
         "http://nf-dispatcher-service.flyte.svc.cluster.local/provision-storage",
         headers=headers,
         json={
@@ -220,7 +221,6 @@ def nextflow_runtime(
     outdir: LatchOutputDir = LatchOutputDir("latch:///Ampliseq"),
 ) -> None:
     shared_dir = Path("/nf-workdir")
-    rename_current_execution(str(run_name))
 
     ignore_list = [
         "latch",
