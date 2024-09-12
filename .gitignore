@@ -14,3 +14,4 @@ ampliseq.Rproj
 results_test/*
 .nf-test/
 nf-test
+.latch/.logs
