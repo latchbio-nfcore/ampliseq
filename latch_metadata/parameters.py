@@ -1,19 +1,14 @@
 import csv
-import typing
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Annotated, List, Optional
+from typing import List, Optional
 
-from flytekit.core.annotation import FlyteAnnotation
 from latch.types.directory import LatchDir, LatchOutputDir
 from latch.types.file import LatchFile
 from latch.types.metadata import (
     Fork,
     ForkBranch,
-    LatchAuthor,
-    NextflowMetadata,
     NextflowParameter,
-    NextflowRuntimeResources,
     Params,
     Section,
     Spoiler,

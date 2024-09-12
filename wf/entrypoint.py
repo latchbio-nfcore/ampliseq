@@ -3,20 +3,15 @@ import os
 import shutil
 import subprocess
 import sys
-import typing
 from dataclasses import dataclass
-from enum import Enum
 from pathlib import Path
 from typing import Annotated, List, Optional
 
 import requests
-import typing_extensions
 from flytekit.core.annotation import FlyteAnnotation
 from latch.executions import rename_current_execution, report_nextflow_used_storage
 from latch.ldata.path import LPath
 from latch.resources.tasks import custom_task, nextflow_runtime_task
-from latch.resources.workflow import workflow
-from latch.types import metadata
 from latch.types.directory import LatchDir, LatchOutputDir
 from latch.types.file import LatchFile
 from latch_cli.nextflow.utils import _get_execution_name
@@ -28,7 +23,6 @@ from wf.enums import DADATaxonomy, Kraken2RefTaxonomy, QiimeRefTaxonomy, SidleRe
 
 meta = Path("latch_metadata") / "__init__.py"
 import_module_by_path(meta)
-import latch_metadata
 
 sys.stdout.reconfigure(line_buffering=True)
 
