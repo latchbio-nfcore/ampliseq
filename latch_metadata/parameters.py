@@ -8,6 +8,7 @@ from latch.types.file import LatchFile
 from latch.types.metadata import (
     Fork,
     ForkBranch,
+    LatchRule,
     NextflowParameter,
     Params,
     Section,
@@ -281,6 +282,12 @@ generated_parameters = {
         display_name="Run Name",
         description="Name of run",
         batch_table_column=True,
+        rules=[
+            LatchRule(
+                regex=r"^[a-zA-Z0-9_-]+$",
+                message="Run name must contain only letters, digits, underscores, and dashes. No spaces are allowed.",
+            )
+        ],
     ),
     "input": NextflowParameter(
         type=List[SampleSheet],

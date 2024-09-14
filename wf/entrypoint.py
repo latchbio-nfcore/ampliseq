@@ -5,10 +5,9 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Annotated, List, Optional
+from typing import List, Optional
 
 import requests
-from flytekit.core.annotation import FlyteAnnotation
 from latch.executions import rename_current_execution, report_nextflow_used_storage
 from latch.ldata.path import LPath
 from latch.resources.tasks import custom_task, nextflow_runtime_task
@@ -94,19 +93,7 @@ def custom_samplesheet_constructor(samples: List[SampleSheet], shared_dir: Path)
 def nextflow_runtime(
     input_source: str,
     pvc_name: str,
-    run_name: Annotated[
-        str,
-        FlyteAnnotation(
-            {
-                "rules": [
-                    {
-                        "regex": r"^[a-zA-Z0-9_-]+$",
-                        "message": "ID name must contain only letters, digits, underscores, and dashes. No spaces are allowed.",
-                    }
-                ],
-            }
-        ),
-    ],
+    run_name: str,
     input: List[SampleSheet],
     input_fasta: Optional[LatchFile],
     input_folder: Optional[LatchDir],
