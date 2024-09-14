@@ -22,19 +22,7 @@ from wf.entrypoint import (
 @workflow(metadata._nextflow_metadata)
 def nf_nf_core_ampliseq(
     input_source: str,
-    run_name: Annotated[
-        str,
-        FlyteAnnotation(
-            {
-                "rules": [
-                    {
-                        "regex": r"^[a-zA-Z0-9_-]+$",
-                        "message": "ID name must contain only letters, digits, underscores, and dashes. No spaces are allowed.",
-                    }
-                ],
-            }
-        ),
-    ],
+    run_name: str,
     input: List[SampleSheet],
     input_fasta: Optional[LatchFile],
     input_folder: Optional[LatchDir],
